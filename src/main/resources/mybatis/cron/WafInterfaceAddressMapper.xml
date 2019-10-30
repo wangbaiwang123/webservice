@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rongwei.cron.dao.WafInterfaceAddressDao">
+
+	<select id="get" resultType="com.rongwei.cron.domain.WafInterfaceAddressDO">
+		select `DICTTYPEID`,
+		       `DICTID`,
+		       `DICTNAME`,
+		       `STATUS`,
+		       `SORTNO`,
+		       `RANK`,
+		       `PARENTID`,
+		       `SEQNO`,
+		       `FILTER1`,
+		       `FILTER2`
+		from waf_interface_address
+		where DICTTYPEID = #{value}
+	</select>
+
+	<select id="list" resultType="com.rongwei.cron.domain.WafInterfaceAddressDO">
+		select
+		`DICTTYPEID`,`DICTID`,`DICTNAME`,`STATUS`,`SORTNO`,`RANK`,`PARENTID`,`SEQNO`,`FILTER1`,`FILTER2`
+		from
+		waf_interface_address
+		<where>
+			<if test="dicttypeid != null and dicttypeid != ''">and DICTTYPEID = #{dicttypeid}</if>
+			<if test="dictid != null and dictid != ''">and DICTID = #{dictid}</if>
+			<if test="dictname != null and dictname != ''">and DICTNAME = #{dictname}</if>
+			<if test="status != null and status != ''">and STATUS = #{status}</if>
+			<if test="sortno != null and sortno != ''">and SORTNO = #{sortno}</if>
+			<if test="rank != null and rank != ''">and RANK = #{rank}</if>
+			<if test="parentid != null and parentid != ''">and PARENTID = #{parentid}</if>
+			<if test="seqno != null and seqno != ''">and SEQNO = #{seqno}</if>
+			<if test="filter1 != null and filter1 != ''">and FILTER1 = #{filter1}</if>
+			<if test="filter2 != null and filter2 != ''">and FILTER2 = #{filter2}</if>
+		</where>
+		<choose>
+			<when test="sort != null and sort.trim() != ''">
+				order by ${sort} ${order}
+			</when>
+			<otherwise>
+				order by DICTTYPEID desc
+			</otherwise>
+		</choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+
+	<select id="count" resultType="int">
+		select count(*) from waf_interface_address
+		<where>
+			<if test="dicttypeid != null and dicttypeid != ''">and DICTTYPEID = #{dicttypeid}</if>
+			<if test="dictid != null and dictid != ''">and DICTID = #{dictid}</if>
+			<if test="dictname != null and dictname != ''">and DICTNAME = #{dictname}</if>
+			<if test="status != null and status != ''">and STATUS = #{status}</if>
+			<if test="sortno != null and sortno != ''">and SORTNO = #{sortno}</if>
+			<if test="rank != null and rank != ''">and RANK = #{rank}</if>
+			<if test="parentid != null and parentid != ''">and PARENTID = #{parentid}</if>
+			<if test="seqno != null and seqno != ''">and SEQNO = #{seqno}</if>
+			<if test="filter1 != null and filter1 != ''">and FILTER1 = #{filter1}</if>
+			<if test="filter2 != null and filter2 != ''">and FILTER2 = #{filter2}</if>
+		</where>
+	</select>
+
+	<insert id="save" parameterType="com.rongwei.cron.domain.WafInterfaceAddressDO">
+		insert into waf_interface_address
+		(`DICTTYPEID`,
+		 `DICTID`,
+		 `DICTNAME`,
+		 `STATUS`,
+		 `SORTNO`,
+		 `RANK`,
+		 `PARENTID`,
+		 `SEQNO`,
+		 `FILTER1`,
+		 `FILTER2`)
+		values
+		(#{dicttypeid},
+		 #{dictid},
+		 #{dictname},
+		 #{status},
+		 #{sortno},
+		 #{rank},
+		 #{parentid},
+		 #{seqno},
+		 #{filter1},
+		 #{filter2})
+	</insert>
+
+	<update id="update" parameterType="com.rongwei.cron.domain.WafInterfaceAddressDO">
+		update waf_interface_address
+		<set>
+			<if test="dictid != null">`DICTID` = #{dictid},</if>
+			<if test="dictname != null">`DICTNAME` = #{dictname},</if>
+			<if test="status != null">`STATUS` = #{status},</if>
+			<if test="sortno != null">`SORTNO` = #{sortno},</if>
+			<if test="rank != null">`RANK` = #{rank},</if>
+			<if test="parentid != null">`PARENTID` = #{parentid},</if>
+			<if test="seqno != null">`SEQNO` = #{seqno},</if>
+			<if test="filter1 != null">`FILTER1` = #{filter1},</if>
+			<if test="filter2 != null">`FILTER2` = #{filter2}</if>
+		</set>
+		where DICTTYPEID = #{dicttypeid}
+	</update>
+
+	<delete id="batchRemove">
+		delete from waf_interface_address where DICTTYPEID in
+		<foreach item="dicttypeid" collection="array" open="(" separator="," close=")">
+			#{dicttypeid}
+		</foreach>
+	</delete>
+
+</mapper>

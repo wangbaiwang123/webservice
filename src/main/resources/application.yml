@@ -1,0 +1,22 @@
+# 端口
+server:
+  port: 9999
+
+
+#选择使用的配置文件
+spring:
+  profiles:
+    active: dev
+
+#mybatis相关配置
+mybatis:
+  mapper-locations: classpath:mybatis/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl  #打印执行的sql到控制台
+
+# slf4j日志相关配置
+logging:
+  level:
+    root: info
+  path: D:\ZJ4A\log\log_zj4a

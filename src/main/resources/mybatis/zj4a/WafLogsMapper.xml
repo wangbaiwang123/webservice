@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rongwei.zj4a.dao.WafLogsDao">
+
+	<select id="get" resultType="com.rongwei.zj4a.domain.WafLogsDO">
+		select `id`,`interface_type`,`interface_name`,`interface_describe`,`important_value`,`input_value`,`output_value`,`state`,`message`,`insert_time` from waf_logs where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.rongwei.zj4a.domain.WafLogsDO">
+		select `id`,`interface_type`,`interface_name`,`interface_describe`,`important_value`,`input_value`,`output_value`,`state`,`message`,`insert_time` from waf_logs
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="interfaceType != null and interfaceType != ''"> and interface_type = #{interfaceType} </if>
+		  		  <if test="interfaceName != null and interfaceName != ''"> and interface_name = #{interfaceName} </if>
+		  		  <if test="interfaceDescribe != null and interfaceDescribe != ''"> and interface_describe = #{interfaceDescribe} </if>
+		  		  <if test="importantValue != null and importantValue != ''"> and important_value = #{importantValue} </if>
+		  		  <if test="inputValue != null and inputValue != ''"> and input_value = #{inputValue} </if>
+		  		  <if test="outputValue != null and outputValue != ''"> and output_value = #{outputValue} </if>
+		  		  <if test="state != null and state != ''"> and state = #{state} </if>
+		  		  <if test="message != null and message != ''"> and message = #{message} </if>
+		  		  <if test="insertTime != null and insertTime != ''"> and insert_time = #{insertTime} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from waf_logs
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="interfaceType != null and interfaceType != ''"> and interface_type = #{interfaceType} </if>
+		  		  <if test="interfaceName != null and interfaceName != ''"> and interface_name = #{interfaceName} </if>
+		  		  <if test="interfaceDescribe != null and interfaceDescribe != ''"> and interface_describe = #{interfaceDescribe} </if>
+		  		  <if test="importantValue != null and importantValue != ''"> and important_value = #{importantValue} </if>
+		  		  <if test="inputValue != null and inputValue != ''"> and input_value = #{inputValue} </if>
+		  		  <if test="outputValue != null and outputValue != ''"> and output_value = #{outputValue} </if>
+		  		  <if test="state != null and state != ''"> and state = #{state} </if>
+		  		  <if test="message != null and message != ''"> and message = #{message} </if>
+		  		  <if test="insertTime != null and insertTime != ''"> and insert_time = #{insertTime} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.rongwei.zj4a.domain.WafLogsDO" useGeneratedKeys="true" keyProperty="id">
+		insert into waf_logs
+		(
+			`interface_type`, 
+			`interface_name`, 
+			`interface_describe`, 
+			`important_value`, 
+			`input_value`, 
+			`output_value`, 
+			`state`, 
+			`message`, 
+			`insert_time`
+		)
+		values
+		(
+			#{interfaceType}, 
+			#{interfaceName}, 
+			#{interfaceDescribe}, 
+			#{importantValue}, 
+			#{inputValue}, 
+			#{outputValue}, 
+			#{state}, 
+			#{message}, 
+			#{insertTime}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.rongwei.zj4a.domain.WafLogsDO">
+		update waf_logs 
+		<set>
+			<if test="interfaceType != null">`interface_type` = #{interfaceType}, </if>
+			<if test="interfaceName != null">`interface_name` = #{interfaceName}, </if>
+			<if test="interfaceDescribe != null">`interface_describe` = #{interfaceDescribe}, </if>
+			<if test="importantValue != null">`important_value` = #{importantValue}, </if>
+			<if test="inputValue != null">`input_value` = #{inputValue}, </if>
+			<if test="outputValue != null">`output_value` = #{outputValue}, </if>
+			<if test="state != null">`state` = #{state}, </if>
+			<if test="message != null">`message` = #{message}, </if>
+			<if test="insertTime != null">`insert_time` = #{insertTime}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from waf_logs where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from waf_logs where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

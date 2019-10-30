@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rongwei.zj4a.dao.WafAcOrganBaseDao">
+
+	<select id="get" resultType="com.rongwei.zj4a.domain.WafAcOrganBaseDO">
+		select
+		       `O2BID`,`BIZTYPE`,`OID`,`POID`,`GPOID`,`ORULE`,`GRULE`,`TYPE`,`TYPEEXT`,`MRUT`,`SNO`,`NAME`,`SHORTNAME`,`OCODE`,`COID`,`CROSSORGAN`,`GOID`,`STATUS`,`GRADE`,`OPER`,`NOTE`,`TEMORGANNAME`,`ORGPROVINCE`,`CAREA`,`TERRITORYPRO`,`BIZDOMAIN`,`ENTCLASS`,`ORGGRADE`,`PROJECTSCALE`,`PROJECTMANTYPE`,`PROJECTTYPE`,`STARTDATE`,`ORGANEMP`,`ORGANGRADE`,`ROWN`,`ROID`,`GLOBAL_SNO`,`QYGRADE`,`CREATETIME`,`UPDATETIME`,`handlestatus` ,`need_transmission`
+		from
+		     waf_ac_organ_base
+		where
+		      O2BID = #{value}
+	</select>
+
+	<select id="list" resultType="com.rongwei.zj4a.domain.WafAcOrganBaseDO">
+		select
+		       `O2BID`,`BIZTYPE`,`OID`,`POID`,`GPOID`,`ORULE`,`GRULE`,`TYPE`,`TYPEEXT`,`MRUT`,`SNO`,`NAME`,`SHORTNAME`,`OCODE`,`COID`,`CROSSORGAN`,`GOID`,`STATUS`,`GRADE`,`OPER`,`NOTE`,`TEMORGANNAME`,`ORGPROVINCE`,`CAREA`,`TERRITORYPRO`,`BIZDOMAIN`,`ENTCLASS`,`ORGGRADE`,`PROJECTSCALE`,`PROJECTMANTYPE`,`PROJECTTYPE`,`STARTDATE`,`ORGANEMP`,`ORGANGRADE`,`ROWN`,`ROID`,`GLOBAL_SNO`,`QYGRADE`,`CREATETIME`,`UPDATETIME`,`handlestatus`,`need_transmission`
+		from
+		     waf_ac_organ_base
+        <where>  
+		  		  <if test="o2bid != null and o2bid != ''"> and O2BID = #{o2bid} </if>
+		  		  <if test="biztype != null and biztype != ''"> and BIZTYPE = #{biztype} </if>
+		  		  <if test="oid != null and oid != ''"> and OID = #{oid} </if>
+		  		  <if test="poid != null and poid != ''"> and POID = #{poid} </if>
+		  		  <if test="gpoid != null and gpoid != ''"> and GPOID = #{gpoid} </if>
+		  		  <if test="orule != null and orule != ''"> and ORULE = #{orule} </if>
+		  		  <if test="grule != null and grule != ''"> and GRULE = #{grule} </if>
+		  		  <if test="type != null and type != ''"> and TYPE = #{type} </if>
+		  		  <if test="typeext != null and typeext != ''"> and TYPEEXT = #{typeext} </if>
+		  		  <if test="mrut != null and mrut != ''"> and MRUT = #{mrut} </if>
+		  		  <if test="sno != null and sno != ''"> and SNO = #{sno} </if>
+		  		  <if test="name != null and name != ''"> and NAME = #{name} </if>
+		  		  <if test="shortname != null and shortname != ''"> and SHORTNAME = #{shortname} </if>
+		  		  <if test="ocode != null and ocode != ''"> and OCODE = #{ocode} </if>
+		  		  <if test="coid != null and coid != ''"> and COID = #{coid} </if>
+		  		  <if test="crossorgan != null and crossorgan != ''"> and CROSSORGAN = #{crossorgan} </if>
+		  		  <if test="goid != null and goid != ''"> and GOID = #{goid} </if>
+		  		  <if test="status != null and status != ''"> and STATUS = #{status} </if>
+		  		  <if test="grade != null and grade != ''"> and GRADE = #{grade} </if>
+		  		  <if test="oper != null and oper != ''"> and OPER = #{oper} </if>
+		  		  <if test="note != null and note != ''"> and NOTE = #{note} </if>
+		  		  <if test="temorganname != null and temorganname != ''"> and TEMORGANNAME = #{temorganname} </if>
+		  		  <if test="orgprovince != null and orgprovince != ''"> and ORGPROVINCE = #{orgprovince} </if>
+		  		  <if test="carea != null and carea != ''"> and CAREA = #{carea} </if>
+		  		  <if test="territorypro != null and territorypro != ''"> and TERRITORYPRO = #{territorypro} </if>
+		  		  <if test="bizdomain != null and bizdomain != ''"> and BIZDOMAIN = #{bizdomain} </if>
+		  		  <if test="entclass != null and entclass != ''"> and ENTCLASS = #{entclass} </if>
+		  		  <if test="orggrade != null and orggrade != ''"> and ORGGRADE = #{orggrade} </if>
+		  		  <if test="projectscale != null and projectscale != ''"> and PROJECTSCALE = #{projectscale} </if>
+		  		  <if test="projectmantype != null and projectmantype != ''"> and PROJECTMANTYPE = #{projectmantype} </if>
+		  		  <if test="projecttype != null and projecttype != ''"> and PROJECTTYPE = #{projecttype} </if>
+		  		  <if test="startdate != null and startdate != ''"> and STARTDATE = #{startdate} </if>
+		  		  <if test="organemp != null and organemp != ''"> and ORGANEMP = #{organemp} </if>
+		  		  <if test="organgrade != null and organgrade != ''"> and ORGANGRADE = #{organgrade} </if>
+		  		  <if test="rown != null and rown != ''"> and ROWN = #{rown} </if>
+		  		  <if test="roid != null and roid != ''"> and ROID = #{roid} </if>
+		  		  <if test="globalSno != null and globalSno != ''"> and GLOBAL_SNO = #{globalSno} </if>
+		  		  <if test="qygrade != null and qygrade != ''"> and QYGRADE = #{qygrade} </if>
+		  		  <if test="createtime != null and createtime != ''"> and CREATETIME = #{createtime} </if>
+		  		  <if test="updatetime != null and updatetime != ''"> and UPDATETIME = #{updatetime} </if>
+		  		  <if test="handlestatus != null and handlestatus != ''"> and handlestatus = #{handlestatus} </if>
+	              <if test="needTransmission != null and needTransmission != ''"> and need_transmission = #{needTransmission} </if>
+        </where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by O2BID desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from waf_ac_organ_base
+		 <where>  
+		  		  <if test="o2bid != null and o2bid != ''"> and O2BID = #{o2bid} </if>
+		  		  <if test="biztype != null and biztype != ''"> and BIZTYPE = #{biztype} </if>
+		  		  <if test="oid != null and oid != ''"> and OID = #{oid} </if>
+		  		  <if test="poid != null and poid != ''"> and POID = #{poid} </if>
+		  		  <if test="gpoid != null and gpoid != ''"> and GPOID = #{gpoid} </if>
+		  		  <if test="orule != null and orule != ''"> and ORULE = #{orule} </if>
+		  		  <if test="grule != null and grule != ''"> and GRULE = #{grule} </if>
+		  		  <if test="type != null and type != ''"> and TYPE = #{type} </if>
+		  		  <if test="typeext != null and typeext != ''"> and TYPEEXT = #{typeext} </if>
+		  		  <if test="mrut != null and mrut != ''"> and MRUT = #{mrut} </if>
+		  		  <if test="sno != null and sno != ''"> and SNO = #{sno} </if>
+		  		  <if test="name != null and name != ''"> and NAME = #{name} </if>
+		  		  <if test="shortname != null and shortname != ''"> and SHORTNAME = #{shortname} </if>
+		  		  <if test="ocode != null and ocode != ''"> and OCODE = #{ocode} </if>
+		  		  <if test="coid != null and coid != ''"> and COID = #{coid} </if>
+		  		  <if test="crossorgan != null and crossorgan != ''"> and CROSSORGAN = #{crossorgan} </if>
+		  		  <if test="goid != null and goid != ''"> and GOID = #{goid} </if>
+		  		  <if test="status != null and status != ''"> and STATUS = #{status} </if>
+		  		  <if test="grade != null and grade != ''"> and GRADE = #{grade} </if>
+		  		  <if test="oper != null and oper != ''"> and OPER = #{oper} </if>
+		  		  <if test="note != null and note != ''"> and NOTE = #{note} </if>
+		  		  <if test="temorganname != null and temorganname != ''"> and TEMORGANNAME = #{temorganname} </if>
+		  		  <if test="orgprovince != null and orgprovince != ''"> and ORGPROVINCE = #{orgprovince} </if>
+		  		  <if test="carea != null and carea != ''"> and CAREA = #{carea} </if>
+		  		  <if test="territorypro != null and territorypro != ''"> and TERRITORYPRO = #{territorypro} </if>
+		  		  <if test="bizdomain != null and bizdomain != ''"> and BIZDOMAIN = #{bizdomain} </if>
+		  		  <if test="entclass != null and entclass != ''"> and ENTCLASS = #{entclass} </if>
+		  		  <if test="orggrade != null and orggrade != ''"> and ORGGRADE = #{orggrade} </if>
+		  		  <if test="projectscale != null and projectscale != ''"> and PROJECTSCALE = #{projectscale} </if>
+		  		  <if test="projectmantype != null and projectmantype != ''"> and PROJECTMANTYPE = #{projectmantype} </if>
+		  		  <if test="projecttype != null and projecttype != ''"> and PROJECTTYPE = #{projecttype} </if>
+		  		  <if test="startdate != null and startdate != ''"> and STARTDATE = #{startdate} </if>
+		  		  <if test="organemp != null and organemp != ''"> and ORGANEMP = #{organemp} </if>
+		  		  <if test="organgrade != null and organgrade != ''"> and ORGANGRADE = #{organgrade} </if>
+		  		  <if test="rown != null and rown != ''"> and ROWN = #{rown} </if>
+		  		  <if test="roid != null and roid != ''"> and ROID = #{roid} </if>
+		  		  <if test="globalSno != null and globalSno != ''"> and GLOBAL_SNO = #{globalSno} </if>
+		  		  <if test="qygrade != null and qygrade != ''"> and QYGRADE = #{qygrade} </if>
+		  		  <if test="createtime != null and createtime != ''"> and CREATETIME = #{createtime} </if>
+		  		  <if test="updatetime != null and updatetime != ''"> and UPDATETIME = #{updatetime} </if>
+		  		  <if test="handlestatus != null and handlestatus != ''"> and handlestatus = #{handlestatus} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.rongwei.zj4a.domain.WafAcOrganBaseDO">
+		insert into waf_ac_organ_base
+		(
+			`O2BID`, 
+			`BIZTYPE`, 
+			`OID`, 
+			`POID`, 
+			`GPOID`, 
+			`ORULE`, 
+			`GRULE`, 
+			`TYPE`, 
+			`TYPEEXT`, 
+			`MRUT`, 
+			`SNO`, 
+			`NAME`, 
+			`SHORTNAME`, 
+			`OCODE`, 
+			`COID`, 
+			`CROSSORGAN`, 
+			`GOID`, 
+			`STATUS`, 
+			`GRADE`, 
+			`OPER`, 
+			`NOTE`, 
+			`TEMORGANNAME`, 
+			`ORGPROVINCE`, 
+			`CAREA`, 
+			`TERRITORYPRO`, 
+			`BIZDOMAIN`, 
+			`ENTCLASS`, 
+			`ORGGRADE`, 
+			`PROJECTSCALE`, 
+			`PROJECTMANTYPE`, 
+			`PROJECTTYPE`, 
+			`STARTDATE`, 
+			`ORGANEMP`, 
+			`ORGANGRADE`, 
+			`ROWN`, 
+			`ROID`, 
+			`GLOBAL_SNO`, 
+			`QYGRADE`, 
+			`CREATETIME`, 
+			`UPDATETIME`, 
+			`handlestatus`,
+			`need_transmission`
+		)
+		values
+		(
+			#{o2bid}, 
+			#{biztype}, 
+			#{oid}, 
+			#{poid}, 
+			#{gpoid}, 
+			#{orule}, 
+			#{grule}, 
+			#{type}, 
+			#{typeext}, 
+			#{mrut}, 
+			#{sno}, 
+			#{name}, 
+			#{shortname}, 
+			#{ocode}, 
+			#{coid}, 
+			#{crossorgan}, 
+			#{goid}, 
+			#{status}, 
+			#{grade}, 
+			#{oper}, 
+			#{note}, 
+			#{temorganname}, 
+			#{orgprovince}, 
+			#{carea}, 
+			#{territorypro}, 
+			#{bizdomain}, 
+			#{entclass}, 
+			#{orggrade}, 
+			#{projectscale}, 
+			#{projectmantype}, 
+			#{projecttype}, 
+			#{startdate}, 
+			#{organemp}, 
+			#{organgrade}, 
+			#{rown}, 
+			#{roid}, 
+			#{globalSno}, 
+			#{qygrade}, 
+			#{createtime}, 
+			#{updatetime},
+		 	#{handlestatus},
+			#{needTransmission}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.rongwei.zj4a.domain.WafAcOrganBaseDO">
+		update waf_ac_organ_base 
+		<set>
+			<if test="biztype != null">`BIZTYPE` = #{biztype}, </if>
+			<if test="oid != null">`OID` = #{oid}, </if>
+			<if test="poid != null">`POID` = #{poid}, </if>
+			<if test="gpoid != null">`GPOID` = #{gpoid}, </if>
+			<if test="orule != null">`ORULE` = #{orule}, </if>
+			<if test="grule != null">`GRULE` = #{grule}, </if>
+			<if test="type != null">`TYPE` = #{type}, </if>
+			<if test="typeext != null">`TYPEEXT` = #{typeext}, </if>
+			<if test="mrut != null">`MRUT` = #{mrut}, </if>
+			<if test="sno != null">`SNO` = #{sno}, </if>
+			<if test="name != null">`NAME` = #{name}, </if>
+			<if test="shortname != null">`SHORTNAME` = #{shortname}, </if>
+			<if test="ocode != null">`OCODE` = #{ocode}, </if>
+			<if test="coid != null">`COID` = #{coid}, </if>
+			<if test="crossorgan != null">`CROSSORGAN` = #{crossorgan}, </if>
+			<if test="goid != null">`GOID` = #{goid}, </if>
+			<if test="status != null">`STATUS` = #{status}, </if>
+			<if test="grade != null">`GRADE` = #{grade}, </if>
+			<if test="oper != null">`OPER` = #{oper}, </if>
+			<if test="note != null">`NOTE` = #{note}, </if>
+			<if test="temorganname != null">`TEMORGANNAME` = #{temorganname}, </if>
+			<if test="orgprovince != null">`ORGPROVINCE` = #{orgprovince}, </if>
+			<if test="carea != null">`CAREA` = #{carea}, </if>
+			<if test="territorypro != null">`TERRITORYPRO` = #{territorypro}, </if>
+			<if test="bizdomain != null">`BIZDOMAIN` = #{bizdomain}, </if>
+			<if test="entclass != null">`ENTCLASS` = #{entclass}, </if>
+			<if test="orggrade != null">`ORGGRADE` = #{orggrade}, </if>
+			<if test="projectscale != null">`PROJECTSCALE` = #{projectscale}, </if>
+			<if test="projectmantype != null">`PROJECTMANTYPE` = #{projectmantype}, </if>
+			<if test="projecttype != null">`PROJECTTYPE` = #{projecttype}, </if>
+			<if test="startdate != null">`STARTDATE` = #{startdate}, </if>
+			<if test="organemp != null">`ORGANEMP` = #{organemp}, </if>
+			<if test="organgrade != null">`ORGANGRADE` = #{organgrade}, </if>
+			<if test="rown != null">`ROWN` = #{rown}, </if>
+			<if test="roid != null">`ROID` = #{roid}, </if>
+			<if test="globalSno != null">`GLOBAL_SNO` = #{globalSno}, </if>
+			<if test="qygrade != null">`QYGRADE` = #{qygrade}, </if>
+			<if test="createtime != null">`CREATETIME` = #{createtime}, </if>
+			<if test="updatetime != null">`UPDATETIME` = #{updatetime}, </if>
+			<if test="handlestatus != null">`handlestatus` = #{handlestatus}</if>
+		</set>
+		where O2BID = #{o2bid}
+	</update>
+	
+	<delete id="batchRemove">
+		delete from waf_ac_organ_base where O2BID in 
+		<foreach item="o2bid" collection="array" open="(" separator="," close=")">
+			#{o2bid}
+		</foreach>
+	</delete>
+
+</mapper>

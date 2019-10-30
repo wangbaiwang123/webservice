@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rongwei.zj4a.dao.WafAcOrgan2organDao">
+
+	<select id="get" resultType="com.rongwei.zj4a.domain.WafAcOrgan2organDO">
+		select `o2oid`,`oid`,`poid`,`gpoid`,`iscascaded`,`sno`,`orule`,`mrut`,`createtime`,`updatetime`,`oper`,`handlestatus` from waf_ac_organ2organ where o2oid = #{value}
+	</select>
+
+	<select id="list" resultType="com.rongwei.zj4a.domain.WafAcOrgan2organDO">
+		select `o2oid`,`oid`,`poid`,`gpoid`,`iscascaded`,`sno`,`orule`,`mrut`,`createtime`,`updatetime`,`oper`,`handlestatus` from waf_ac_organ2organ
+        <where>  
+	          <if test="o2oid != null and o2oid != ''"> and o2oid = #{o2oid} </if>
+	          <if test="oid != null and oid != ''"> and oid = #{oid} </if>
+	          <if test="poid != null and poid != ''"> and poid = #{poid} </if>
+	          <if test="gpoid != null and gpoid != ''"> and gpoid = #{gpoid} </if>
+	          <if test="iscascaded != null and iscascaded != ''"> and iscascaded = #{iscascaded} </if>
+	          <if test="sno != null and sno != ''"> and sno = #{sno} </if>
+	          <if test="orule != null and orule != ''"> and orule = #{orule} </if>
+	          <if test="mrut != null and mrut != ''"> and mrut = #{mrut} </if>
+	          <if test="createtime != null and createtime != ''"> and createtime = #{createtime} </if>
+	          <if test="updatetime != null and updatetime != ''"> and updatetime = #{updatetime} </if>
+	          <if test="oper != null and oper != ''"> and oper = #{oper} </if>
+	          <if test="handlestatus != null and handlestatus != ''"> and handlestatus = #{handlestatus} </if>
+        </where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by o2oid desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from waf_ac_organ2organ
+		 <where>  
+		  		  <if test="o2oid != null and o2oid != ''"> and o2oid = #{o2oid} </if>
+		  		  <if test="oid != null and oid != ''"> and oid = #{oid} </if>
+		  		  <if test="poid != null and poid != ''"> and poid = #{poid} </if>
+		  		  <if test="gpoid != null and gpoid != ''"> and gpoid = #{gpoid} </if>
+		  		  <if test="iscascaded != null and iscascaded != ''"> and iscascaded = #{iscascaded} </if>
+		  		  <if test="sno != null and sno != ''"> and sno = #{sno} </if>
+		  		  <if test="orule != null and orule != ''"> and orule = #{orule} </if>
+		  		  <if test="mrut != null and mrut != ''"> and mrut = #{mrut} </if>
+		  		  <if test="createtime != null and createtime != ''"> and createtime = #{createtime} </if>
+		  		  <if test="updatetime != null and updatetime != ''"> and updatetime = #{updatetime} </if>
+		  		  <if test="oper != null and oper != ''"> and oper = #{oper} </if>
+		  		  <if test="handlestatus != null and handlestatus != ''"> and handlestatus = #{handlestatus} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.rongwei.zj4a.domain.WafAcOrgan2organDO">
+		insert into waf_ac_organ2organ
+		(
+			`o2oid`, 
+			`oid`, 
+			`poid`, 
+			`gpoid`, 
+			`iscascaded`, 
+			`sno`, 
+			`orule`, 
+			`mrut`, 
+			`createtime`, 
+			`updatetime`, 
+			`oper`, 
+			`handlestatus`
+		)
+		values
+		(
+			#{o2oid}, 
+			#{oid}, 
+			#{poid}, 
+			#{gpoid}, 
+			#{iscascaded}, 
+			#{sno}, 
+			#{orule}, 
+			#{mrut}, 
+			#{createtime}, 
+			#{updatetime}, 
+			#{oper}, 
+			#{handlestatus}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.rongwei.zj4a.domain.WafAcOrgan2organDO">
+		update waf_ac_organ2organ 
+		<set>
+			<if test="oid != null">`oid` = #{oid}, </if>
+			<if test="poid != null">`poid` = #{poid}, </if>
+			<if test="gpoid != null">`gpoid` = #{gpoid}, </if>
+			<if test="iscascaded != null">`iscascaded` = #{iscascaded}, </if>
+			<if test="sno != null">`sno` = #{sno}, </if>
+			<if test="orule != null">`orule` = #{orule}, </if>
+			<if test="mrut != null">`mrut` = #{mrut}, </if>
+			<if test="createtime != null">`createtime` = #{createtime}, </if>
+			<if test="updatetime != null">`updatetime` = #{updatetime}, </if>
+			<if test="oper != null">`oper` = #{oper}, </if>
+			<if test="handlestatus != null">`handlestatus` = #{handlestatus}</if>
+		</set>
+		where o2oid = #{o2oid}
+	</update>
+	
+	<delete id="remove">
+		delete from waf_ac_organ2organ where o2oid = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from waf_ac_organ2organ where o2oid in 
+		<foreach item="o2oid" collection="array" open="(" separator="," close=")">
+			#{o2oid}
+		</foreach>
+	</delete>
+
+</mapper>

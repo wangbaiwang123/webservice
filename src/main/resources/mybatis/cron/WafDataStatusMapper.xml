@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rongwei.cron.dao.WafDataStatusDao">
+
+	<select id="get" resultType="com.rongwei.cron.domain.WafDataStatusDO">
+		select `ID`,
+		       `RELATION_ID`,
+		       `TABLE_TYPE`,
+		       `INTERFACE_TYPE`,
+		       `DATA_STATUS`,
+		       `INSERT_TIME`,
+		       `UPDATE_TIME`,
+		       `SYNCH_TIME`
+		from waf_data_status
+		where ID = #{value}
+	</select>
+
+	<select id="list" resultType="com.rongwei.cron.domain.WafDataStatusDO">
+		select `ID`,`RELATION_ID`,`TABLE_TYPE`,`INTERFACE_TYPE`,`DATA_STATUS`,`INSERT_TIME`,`UPDATE_TIME`,`SYNCH_TIME`
+		from waf_data_status
+		<where>
+			<if test="id != null and id != ''">and ID = #{id}</if>
+			<if test="relationId != null and relationId != ''">and RELATION_ID = #{relationId}</if>
+			<if test="tableType != null and tableType != ''">and TABLE_TYPE = #{tableType}</if>
+			<if test="interfaceType != null and interfaceType != ''">and INTERFACE_TYPE = #{interfaceType}</if>
+			<if test="dataStatus != null and dataStatus != ''">and DATA_STATUS = #{dataStatus}</if>
+			<if test="insertTime != null">and INSERT_TIME = #{insertTime}</if>
+			<if test="updateTime != null">and UPDATE_TIME = #{updateTime}</if>
+			<if test="synchTime != null">and SYNCH_TIME = #{synchTime}</if>
+		</where>
+		<choose>
+			<when test="sort != null and sort.trim() != ''">
+				order by ${sort} ${order}
+			</when>
+			<otherwise>
+				order by ID desc
+			</otherwise>
+		</choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+
+	<select id="count" resultType="int">
+		select count(*) from waf_data_status
+		<where>
+			<if test="id != null and id != ''">and ID = #{id}</if>
+			<if test="relationId != null and relationId != ''">and RELATION_ID = #{relationId}</if>
+			<if test="tableType != null and tableType != ''">and TABLE_TYPE = #{tableType}</if>
+			<if test="interfaceType != null and interfaceType != ''">and INTERFACE_TYPE = #{interfaceType}</if>
+			<if test="dataStatus != null and dataStatus != ''">and DATA_STATUS = #{dataStatus}</if>
+			<if test="insertTime != null">and INSERT_TIME = #{insertTime}</if>
+			<if test="updateTime != null">and UPDATE_TIME = #{updateTime}</if>
+			<if test="synchTime != null">and SYNCH_TIME = #{synchTime}</if>
+		</where>
+	</select>
+
+	<insert id="save" parameterType="com.rongwei.cron.domain.WafDataStatusDO" useGeneratedKeys="true" keyProperty="id">
+		insert into waf_data_status
+		(`RELATION_ID`,
+		 `TABLE_TYPE`,
+		 `INTERFACE_TYPE`,
+		 `DATA_STATUS`,
+		 `INSERT_TIME`,
+		 `UPDATE_TIME`,
+		 `SYNCH_TIME`)
+		values
+		(#{relationId},
+		 #{tableType},
+		 #{interfaceType},
+		 #{dataStatus},
+		 #{insertTime},
+		 #{updateTime},
+		 #{synchTime})
+	</insert>
+
+	<update id="update" parameterType="com.rongwei.cron.domain.WafDataStatusDO">
+		update waf_data_status
+		<set>
+			<if test="relationId != null">`RELATION_ID` = #{relationId},</if>
+			<if test="tableType != null">`TABLE_TYPE` = #{tableType},</if>
+			<if test="interfaceType != null">`INTERFACE_TYPE` = #{interfaceType},</if>
+			<if test="dataStatus != null">`DATA_STATUS` = #{dataStatus},</if>
+			<if test="insertTime != null">`INSERT_TIME` = #{insertTime},</if>
+			<if test="updateTime != null">`UPDATE_TIME` = #{updateTime},</if>
+			<if test="synchTime != null">`SYNCH_TIME` = #{synchTime}</if>
+		</set>
+		where ID = #{id}
+	</update>
+
+	<delete id="batchRemove">
+		delete from waf_data_status where ID in
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

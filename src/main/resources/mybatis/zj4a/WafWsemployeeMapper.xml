@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rongwei.zj4a.dao.WsemployeeDao">
+
+	<select id="get" resultType="com.rongwei.zj4a.domain.WsemployeeDO">
+		select
+			`empcode`,`attribute1`,`attribute2`,`birthday`,`certno`,`certtype`,`email`,`empsort`,`empstatus`,`enname`,`entrytime`,`fax`,`hrempcode`,`jobname`,`jobtype`,`NAME`,`namespell`,`nation`,`nationnality`,`officeNum`,`officedepid`,`PASSWORD`,`phone`,`positiongrade`,`postionname`,`postions`,`sex`,`sno`,`subdepts`,`tel`,`userLogin`,`createtime`,`updatetime`,`isvalid`,`handlestatus`,`need_transmission`
+		from
+			waf_wsemployee
+		where
+			id = #{id}
+	</select>
+
+	<select id="list" resultType="com.rongwei.zj4a.vo.Zj4aWsemployeeVO" parameterType="java.util.Map">
+		select
+			`id`,`empcode`,`attribute1`,`attribute2`,`birthday`,`certno`,`certtype`,`email`,`empsort`,`empstatus`,`enname`,`entrytime`,`fax`,`hrempcode`,`jobname`,`jobtype`,`NAME`,`namespell`,`nation`,`nationnality`,`officeNum`,`officedepid`,`PASSWORD`,`phone`,`positiongrade`,`postionname`,`postions`,`sex`,`sno`,`subdepts`,`tel`,`userLogin`,`createtime`,`updatetime`,`isvalid`,`handlestatus`,`need_transmission`
+		from
+			waf_wsemployee
+		<where>
+			<if test="id != null and id != ''">and id = #{id}</if>
+			<if test="empcode != null and empcode != ''">and empcode = #{empcode}</if>
+			<if test="attribute1 != null and attribute1 != ''">and attribute1 = #{attribute1}</if>
+			<if test="attribute2 != null and attribute2 != ''">and attribute2 = #{attribute2}</if>
+			<if test="birthday != null and birthday != ''">and birthday = #{birthday}</if>
+			<if test="certno != null and certno != ''">and certno = #{certno}</if>
+			<if test="certtype != null and certtype != ''">and certtype = #{certtype}</if>
+			<if test="email != null and email != ''">and email = #{email}</if>
+			<if test="empsort != null and empsort != ''">and empsort = #{empsort}</if>
+			<if test="empstatus != null and empstatus != ''">and empstatus = #{empstatus}</if>
+			<if test="enname != null and enname != ''">and enname = #{enname}</if>
+			<if test="entrytime != null and entrytime != ''">and entrytime = #{entrytime}</if>
+			<if test="fax != null and fax != ''">and fax = #{fax}</if>
+			<if test="hrempcode != null and hrempcode != ''">and hrempcode = #{hrempcode}</if>
+			<if test="jobname != null and jobname != ''">and jobname = #{jobname}</if>
+			<if test="jobtype != null and jobtype != ''">and jobtype = #{jobtype}</if>
+			<if test="name != null and name != ''">and NAME = #{name}</if>
+			<if test="namespell != null and namespell != ''">and namespell = #{namespell}</if>
+			<if test="nation != null and nation != ''">and nation = #{nation}</if>
+			<if test="nationnality != null and nationnality != ''">and nationnality = #{nationnality}</if>
+			<if test="officenum != null and officenum != ''">and officeNum = #{officenum}</if>
+			<if test="officedepid != null and officedepid != ''">and officedepid = #{officedepid}</if>
+			<if test="password != null and password != ''">and PASSWORD = #{password}</if>
+			<if test="phone != null and phone != ''">and phone = #{phone}</if>
+			<if test="positiongrade != null and positiongrade != ''">and positiongrade = #{positiongrade}</if>
+			<if test="postionname != null and postionname != ''">and postionname = #{postionname}</if>
+			<if test="postions != null and postions != ''">and postions = #{postions}</if>
+			<if test="sex != null and sex != ''">and sex = #{sex}</if>
+			<if test="sno != null and sno != ''">and sno = #{sno}</if>
+			<if test="subdepts != null and subdepts != ''">and subdepts = #{subdepts}</if>
+			<if test="tel != null and tel != ''">and tel = #{tel}</if>
+			<if test="userlogin != null and userlogin != ''">and userlogin = #{userlogin}</if>
+			<if test="createtime != null and createtime != ''">and createtime = #{createtime}</if>
+			<if test="updatetime != null and updatetime != ''">and updatetime = #{updatetime}</if>
+			<if test="isvalid != null and isvalid != ''">and isvalid = #{isvalid}</if>
+			<if test="handlestatus != null and handlestatus != ''">and handlestatus = #{handlestatus}</if>
+			<if test="needTransmission != null and needTransmission != ''">and need_transmission = #{needTransmission}</if>
+		</where>
+		<choose>
+			<when test="sort != null and sort.trim() != ''">
+				order by ${sort} ${order}
+			</when>
+			<otherwise>
+				order by empcode desc
+			</otherwise>
+		</choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+
+	<insert id="save" parameterType="com.rongwei.zj4a.domain.WsemployeeDO">
+		insert into waf_wsemployee
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="empcode != null">`empcode`,</if>
+			<if test="attribute1 != null">`attribute1`,</if>
+			<if test="attribute2 != null">`attribute2`,</if>
+			<if test="birthday != null">`birthday`,</if>
+			<if test="certno != null">`certno`,</if>
+			<if test="certtype != null">`certtype`,</if>
+			<if test="email != null">`email`,</if>
+			<if test="empsort != null">`empsort`,</if>
+			<if test="empstatus != null">`empstatus`,</if>
+			<if test="enname != null">`enname`,</if>
+			<if test="entrytime != null">`entrytime`,</if>
+			<if test="fax != null">`fax`,</if>
+			<if test="hrempcode != null">`hrempcode`,</if>
+			<if test="jobname != null">`jobname`,</if>
+			<if test="jobtype != null">`jobtype`,</if>
+			<if test="name != null">`name`,</if>
+			<if test="namespell != null">`namespell`,</if>
+			<if test="nation != null">`nation`,</if>
+			<if test="nationnality != null">`nationnality`,</if>
+			<if test="officenum != null">`officenum`,</if>
+			<if test="officedepid != null">`officedepid`,</if>
+			<if test="password != null">`password`,</if>
+			<if test="phone != null">`phone`,</if>
+			<if test="positiongrade != null">`positiongrade`,</if>
+			<if test="postionname != null">`postionname`,</if>
+			<if test="postions != null">`postions`,</if>
+			<if test="sex != null">`sex`,</if>
+			<if test="sno != null">`sno`,</if>
+			<if test="subdepts != null">`subdepts`,</if>
+			<if test="tel != null">`tel`,</if>
+			<if test="userlogin != null">`userlogin`,</if>
+			<if test="createtime != null">`createtime`,</if>
+			<if test="updatetime != null">`updatetime`,</if>
+			<if test="isvalid != null">`isvalid`,</if>
+			<if test="handlestatus != null">`handlestatus`,</if>
+			<if test="needTransmission != null and needTransmission != ''">`need_transmission`,</if>
+		</trim>
+		values
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="empcode != null">#{empcode},</if>
+			<if test="attribute1 != null">#{attribute1},</if>
+			<if test="attribute2 != null">#{attribute2},</if>
+			<if test="birthday != null">#{birthday},</if>
+			<if test="certno != null">#{certno},</if>
+			<if test="certtype != null">#{certtype},</if>
+			<if test="email != null">#{email},</if>
+			<if test="empsort != null">#{empsort},</if>
+			<if test="empstatus != null">#{empstatus},</if>
+			<if test="enname != null">#{enname},</if>
+			<if test="entrytime != null">#{entrytime},</if>
+			<if test="fax != null">#{fax},</if>
+			<if test="hrempcode != null">#{hrempcode},</if>
+			<if test="jobname != null">#{jobname},</if>
+			<if test="jobtype != null">#{jobtype},</if>
+			<if test="name != null">#{name},</if>
+			<if test="namespell != null">#{namespell},</if>
+			<if test="nation != null">#{nation},</if>
+			<if test="nationnality != null">#{nationnality},</if>
+			<if test="officenum != null">#{officenum},</if>
+			<if test="officedepid != null">#{officedepid},</if>
+			<if test="password != null">#{password},</if>
+			<if test="phone != null">#{phone},</if>
+			<if test="positiongrade != null">#{positiongrade},</if>
+			<if test="postionname != null">#{postionname},</if>
+			<if test="postions != null">#{postions},</if>
+			<if test="sex != null">#{sex},</if>
+			<if test="sno != null">#{sno},</if>
+			<if test="subdepts != null">#{subdepts},</if>
+			<if test="tel != null">#{tel},</if>
+			<if test="userlogin != null">#{userlogin},</if>
+			<if test="createtime != null">#{createtime},</if>
+			<if test="updatetime != null">#{updatetime},</if>
+			<if test="isvalid != null">#{isvalid},</if>
+			<if test="handlestatus != null">#{handlestatus},</if>
+			<if test="needTransmission != null and needTransmission != ''">#{needTransmission},</if>
+		</trim>
+	</insert>
+
+	<update id="update" parameterType="com.rongwei.zj4a.domain.WsemployeeDO">
+		update waf_wsemployee
+		<set>
+			<if test="attribute1 != null">`attribute1` = #{attribute1},</if>
+			<if test="attribute2 != null">`attribute2` = #{attribute2},</if>
+			<if test="birthday != null">`birthday` = #{birthday},</if>
+			<if test="certno != null">`certno` = #{certno},</if>
+			<if test="certtype != null">`certtype` = #{certtype},</if>
+			<if test="email != null">`email` = #{email},</if>
+			<if test="empsort != null">`empsort` = #{empsort},</if>
+			<if test="empstatus != null">`empstatus` = #{empstatus},</if>
+			<if test="enname != null">`enname` = #{enname},</if>
+			<if test="entrytime != null">`entrytime` = #{entrytime},</if>
+			<if test="fax != null">`fax` = #{fax},</if>
+			<if test="hrempcode != null">`hrempcode` = #{hrempcode},</if>
+			<if test="jobname != null">`jobname` = #{jobname},</if>
+			<if test="jobtype != null">`jobtype` = #{jobtype},</if>
+			<if test="name != null">`NAME` = #{name},</if>
+			<if test="namespell != null">`namespell` = #{namespell},</if>
+			<if test="nation != null">`nation` = #{nation},</if>
+			<if test="nationnality != null">`nationnality` = #{nationnality},</if>
+			<if test="officenum != null">`officeNum` = #{officenum},</if>
+			<if test="officedepid != null">`officedepid` = #{officedepid},</if>
+			<if test="password != null">`PASSWORD` = #{password},</if>
+			<if test="phone != null">`phone` = #{phone},</if>
+			<if test="positiongrade != null">`positiongrade` = #{positiongrade},</if>
+			<if test="postionname != null">`postionname` = #{postionname},</if>
+			<if test="postions != null">`postions` = #{postions},</if>
+			<if test="sex != null">`sex` = #{sex},</if>
+			<if test="sno != null">`sno` = #{sno},</if>
+			<if test="subdepts != null">`subdepts` = #{subdepts},</if>
+			<if test="tel != null">`tel` = #{tel},</if>
+			<if test="userlogin != null">`userlogin` = #{userlogin},</if>
+			<if test="createtime != null">`createtime` = #{createtime},</if>
+			<if test="updatetime != null">`updatetime` = #{updatetime},</if>
+			<if test="isvalid != null">`isvalid` = #{isvalid},</if>
+			<if test="handlestatus != null">`handlestatus` = #{handlestatus},</if>
+			<if test="needTransmission != null and needTransmission != ''">`need_transmission` = #{needTransmission}</if>
+		</set>
+		where
+		    empcode = #{empcode}
+	</update>
+
+	<delete id="remove">
+		delete from waf_wsemployee where empcode = #{value}
+	</delete>
+
+	<delete id="batchRemove">
+		delete from waf_wsemployee where empcode in
+		<foreach item="empcode" collection="array" open="(" separator="," close=")">
+			#{empcode}
+		</foreach>
+	</delete>
+</mapper>
